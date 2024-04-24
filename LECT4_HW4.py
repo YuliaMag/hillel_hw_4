@@ -19,7 +19,8 @@ elif email.count(".") > 1:
 elif email.find("@") > email.find("."):
     print(False)
 elif not email.isalnum():
-    if email.__contains__("@") or email.__contains__("."):
+    # if email.__contains__("@") or email.__contains__("."):
+    if email.find("@") or email.find("."):
         print(True)
     else:
         print(False)
