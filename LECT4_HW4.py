@@ -1,16 +1,26 @@
 email = input("Email Address: ")
+q = 0
+w = 0
+prev_chr = ""
 
-s = "! # $ % ^ & * ( ) _ + = - / , < > ?"
-l_n = s.split(" ")
+res = True
 
-for x in l_n:
-    if (x in email or email.count("@") != 1 or email.count(".") != 1 or "@" == email[0] or "." == email[-1] or
-            email.find("@") > email.find(".") or email.find(".") == email.find("@") + 1):
-        print(False)
-        break
-    else:
-        print(True)
-        break
+for i in range(len(email)):
+    if email[i].isalnum():
+        prev_chr = email[i]
+        continue
+    if email[i] == "@" and q == 0 and 0 < i < (len(email) - 1):
+        q = 1
+        prev_chr = email[i]
+        continue
+    if email[i] == "." and w == 0 and 0 < i < (len(email) - 1) and q == 1 and prev_chr != "@":
+        w = 1
+        prev_chr = email[i]
+        continue
+    res = False
+    break
+print(res)
+
 
 # TC "True":
 # test@test.com
