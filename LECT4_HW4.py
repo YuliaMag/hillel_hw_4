@@ -1,47 +1,30 @@
-
 email = input("Email Address: ")
 
-if "@" not in email:
-    print(False)
-# testatest.com
+s = "! # $ % ^ & * ( ) _ + = - / , < > ?"
+l_n = s.split(" ")
 
-elif "." not in email:
-    print(False)
-# test@testdotcom
-
-elif "@" == email[0]:
-    print(False)
-# @test.test
-
-elif "." in email[-1]:
-    print(False)
-# test@test.
-
-elif email.count("@") > 1: # if I put "!= 2" then 3 "@" will be valid input
-    print(False)
-# test@test@test.com
-
-elif email.count(".") > 1: # if I put "!= 2" then 3 "." will be valid input
-    print(False)
-# test@test.test.com
-
-elif email.find("@") > email.find("."):
-    print(False)
-# test.test@com
-
-elif not email.isalnum():
-    if email.find("@") or email.find("."):
-        pass
-    else:
+for x in l_n:
+    if ((x in email) or (email.count("@") != 1 or email.count(".") != 1) or ("@" == email[0] or "." == email[-1]) or
+            (email.find("@") > email.find(".")) or (email.find(".") == email.find("@") + 1)):
         print(False)
-    print(False)
-# )*(^&*%^$%$##%^$^%
-# #$%@&*(.% -- I missed this one
+        break
+    else:
+        print(True)
+        break
 
-else:
-    print("True")
+# TC "True":
 # test@test.com
 
-
-
-
+# TCs "False":
+# test.test@com
+# test@@test@com
+# test.test.com
+# testtestcom
+# ^%&!#$%^&*()_+><?
+# ^%&test
+# &*^@(*&.%$ ---!! failed, gives True!!!
+# @test.
+# @test
+# test.
+# test.@test
+# test@.test ---- !!! the case I missed before
